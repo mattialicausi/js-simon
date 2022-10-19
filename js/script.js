@@ -39,10 +39,39 @@ function rimuoviLista(){
         let vuoto = containerNumeri.innerHTML = '';
         console.log(vuoto);
     }, secondi * milliSecondi);
+
+
+    
 }
 rimuoviLista();
 
+//creo funzione per creare input per far inserire all'utente i numeri
 
+let listaNumeriUtente = [];
+
+function creaInputUtente(){
+        const inputUtente = document.createElement('input');
+        containerNumeri.append(inputUtente);
+        const buttonUtente = document.createElement('button');
+        buttonUtente.innerHTML = 'INVIA';
+        containerNumeri.append(buttonUtente);
+        
+
+        buttonUtente.addEventListener('click', inviaNumeroUtente());
+        function inviaNumeroUtente(){
+            let utente = inputUtente.value;
+           
+            if(listaNumeriUtente.length < numeriRandom){
+                listaNumeriUtente.push(utente);
+               console.log(inputUtente.value);
+            }
+             
+        }
+        
+}
+
+
+setTimeout(creaInputUtente, secondi * milliSecondi);
 
 
 
