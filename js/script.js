@@ -17,7 +17,7 @@ const numeriRandom = 5;
     while(listaNumeri.length < numeriRandom){
     const generato = randomNumber(1, 100);
     if(!listaNumeri.includes(generato)){
-        listaNumeri.push(generato);   
+        listaNumeri.push(parseInt(generato));   
     }
 }
     console.log(listaNumeri);
@@ -40,8 +40,6 @@ function rimuoviLista(){
         console.log(vuoto);
     }, secondi * milliSecondi);
 
-
-    
 }
 rimuoviLista();
 
@@ -56,29 +54,41 @@ function creaInputUtente(){
         const buttonUtente = document.createElement('button');
         buttonUtente.innerHTML = 'INVIA';
         containerNumeri.append(buttonUtente);
-        inputUtente.innerHTML = '';
+        
 
         buttonUtente.addEventListener('click', inviaNumeroUtente);
+        inputUtente.innerHTML = '';  
         function inviaNumeroUtente(){
-          let utente = inputUtente.value;  
+          
+          let utente = parseInt(inputUtente.value);  
            
             if(listaNumeriUtente.length < numeriRandom){
                 listaNumeriUtente.push(utente);
-                 console.log(listaNumeriUtente);
+                console.log(listaNumeriUtente);
             }
         }   
-        checkNumbers();
 }
+        
+        if(listaNumeriUtente.length === listaNumeri.length){
+           checkNumbers(); 
+        }  
 
 setTimeout(creaInputUtente, secondi * milliSecondi);
 
 // funzione per controllare se i numeri inseriti dall'utente e quelli generali corrispondono
+
+
+let listaNumeriUguali = [];
 function checkNumbers(){
-    if(listaNumeri == listaNumeriUtente){
-        console.log(listaNumeriUtente);
-    } else{
-        console.log('Non hai beccato nemmeno un numero!');
-    }
+    for(let i = 0; i < listaNumeriUtente.length; i++){
+        if(listaNumeri[i] == listaNumeriUtente[i]){
+            console.log(listaNumeriUtente);
+            listaNumeriUguali.push(listaNumeriUtente.value);
+            
+        } else{
+            console.log('Non hai beccato nemmeno un numero!');
+         }
+    } 
 }
 
 
