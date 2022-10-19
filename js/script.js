@@ -64,14 +64,23 @@ function creaInputUtente(){
            
             if(listaNumeriUtente.length < numeriRandom){
                 listaNumeriUtente.push(utente);
+                 console.log(listaNumeriUtente);
             }
-             console.log(listaNumeriUtente);
-        }
-        
+        }   
+        checkNumbers();
 }
 
-
 setTimeout(creaInputUtente, secondi * milliSecondi);
+
+// funzione per controllare se i numeri inseriti dall'utente e quelli generali corrispondono
+function checkNumbers(){
+    if(listaNumeri == listaNumeriUtente){
+        console.log(listaNumeriUtente);
+    } else{
+        console.log('Non hai beccato nemmeno un numero!');
+    }
+}
+
 
 
 
