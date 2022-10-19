@@ -50,22 +50,22 @@ rimuoviLista();
 let listaNumeriUtente = [];
 
 function creaInputUtente(){
+    
         const inputUtente = document.createElement('input');
         containerNumeri.append(inputUtente);
         const buttonUtente = document.createElement('button');
         buttonUtente.innerHTML = 'INVIA';
         containerNumeri.append(buttonUtente);
-        
+        inputUtente.innerHTML = '';
 
-        buttonUtente.addEventListener('click', inviaNumeroUtente());
+        buttonUtente.addEventListener('click', inviaNumeroUtente);
         function inviaNumeroUtente(){
-            let utente = inputUtente.value;
+          let utente = inputUtente.value;  
            
             if(listaNumeriUtente.length < numeriRandom){
                 listaNumeriUtente.push(utente);
-               console.log(inputUtente.value);
             }
-             
+             console.log(listaNumeriUtente);
         }
         
 }
