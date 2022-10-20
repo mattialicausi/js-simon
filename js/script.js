@@ -12,7 +12,7 @@ let listaNumeri = [];
 const numeriRandom = 5;
 
 
-//ciclo while per generare 5 numeri random da inserire in array
+//funzione con ciclo while per generare 5 numeri random da inserire in array
  function generaNumeri(){
     while(listaNumeri.length < numeriRandom){
     const generato = randomNumber(1, 100);
@@ -36,8 +36,8 @@ const secondi = 3;
 const milliSecondi = 1000; 
 function rimuoviLista(){
         setTimeout(function(){
-        let vuoto = containerNumeri.innerHTML = '';
-        console.log(vuoto);
+        containerNumeri.innerHTML = '';
+        //console.log(vuoto);
     }, secondi * milliSecondi);
 
 }
@@ -47,49 +47,62 @@ rimuoviLista();
 
 let listaNumeriUtente = [];
 
+
 function creaInputUtente(){
-    
+        
         const inputUtente = document.createElement('input');
+        inputUtente.setAttribute('type', 'number');
         containerNumeri.append(inputUtente);
         const buttonUtente = document.createElement('button');
         buttonUtente.innerHTML = 'INVIA';
         containerNumeri.append(buttonUtente);
-        
 
         buttonUtente.addEventListener('click', inviaNumeroUtente);
-        inputUtente.innerHTML = '';  
+         
         function inviaNumeroUtente(){
           
           let utente = parseInt(inputUtente.value);  
-           
+
             if(listaNumeriUtente.length < numeriRandom){
                 listaNumeriUtente.push(utente);
+                inputUtente.innerHTML = ''; 
                 console.log(listaNumeriUtente);
+             
             }
-        }   
-}
-        
-        if(listaNumeriUtente.length === listaNumeri.length){
-           checkNumbers(); 
-        }  
+            if(listaNumeriUtente.length == numeriRandom){
 
+                controllaListe(); 
+                buttonUtente.removeEventListener('click', inviaNumeroUtente);
+                // scoreUtente();
+            }
+        }     
+}
+         
 setTimeout(creaInputUtente, secondi * milliSecondi);
 
 // funzione per controllare se i numeri inseriti dall'utente e quelli generali corrispondono
 
+const listaUguali = [];
 
-let listaNumeriUguali = [];
-function checkNumbers(){
-    for(let i = 0; i < listaNumeriUtente.length; i++){
-        if(listaNumeri[i] == listaNumeriUtente[i]){
-            console.log(listaNumeriUtente);
-            listaNumeriUguali.push(listaNumeriUtente.value);
-            
-        } else{
-            console.log('Non hai beccato nemmeno un numero!');
-         }
-    } 
+function controllaListe(){
+    for(let i = 0; i < 5; i++){
+        if((listaNumeri.includes(listaNumeriUtente[i]) && !listaUguali.includes(listaNumeriUtente[i])) ){
+            listaUguali.push(listaNumeriUtente[i]);
+        }   
+    }
+    //console.log(listaUguali);
+    // console.log(listaNumeri)
+    // console.log(listaNumeriUtente)
+
+    if(listaNumeri.length === listaUguali.length){
+        containerNumeri.innerHTML = "hai indovinato tutti i numeri"
+    } else{
+        containerNumeri.innerHTML = `Hai indovinato ${listaUguali.length} numeri, i seguenti numeri: ${listaUguali}`
+    }
+    
 }
+
+
 
 
 
